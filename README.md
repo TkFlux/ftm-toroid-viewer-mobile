@@ -1,26 +1,27 @@
 # FTM / Compact Toroid Viewer (Mobile)
 
-Mobile-friendly educational geometry sketch of a fractal-toroidal / FRC-style envelope with a co-rotating “hammer” (orange-slice) brightness plane.
+Mobile-friendly educational viewer for a spinning FTM/FRC-style compact toroid with a co-rotating “hammer” (orange-slice) brightness plane.
 
-**Not a claim about any footage** — interactive plasma vocabulary toy for phones.
+**Live:** https://ftm-toroid-viewer-mobile.vercel.app  
+**Also:** https://ftm-toroid-viewer-mobile-tkflux.vercel.app  
+**Repo:** https://github.com/TkFlux/ftm-toroid-viewer-mobile
 
-## Features
+Desktop sibling (unchanged): https://ftm-toroid-viewer.vercel.app
 
+## Mobile UX
 - Portrait (~390×844) and landscape layouts
-- One-finger drag to orbit, pinch / two-finger / wheel to zoom
-- Collapsible bottom-sheet controls (side drawer in landscape)
-- Large tap targets (~44px+) and thumb-friendly sliders
-- Safe-area padding for notched phones
-- Same physics/geometry as the desktop viewer
+- One-finger drag to orbit; pinch / two-finger / wheel zoom (no right-click)
+- Collapsible bottom sheet + hamburger Controls FAB (side drawer in landscape)
+- ~44px tap targets; large range thumbs; safe-area insets; no hover-only UI
+- `touch-action` / overscroll guards so browser scroll does not steal canvas drags
+- Same physics/sliders as desktop: spin, tilt, Bin/Bout, R, a, hammer intensity/width, opacity, pause/trails/reset
+- Educational disclaimer (not a footage claim)
+- Three.js via CDN (r128), single-file app (`index.html` source; deploy uses thin bootloader + `viewer.b64`)
 
-## Run locally
-
-Open `index.html` in a browser, or:
+## Local
+Open `index.html` (full app) in a browser, or serve the deploy pair:
 
 ```bash
-python3 -m http.server 8765
+python3 -m http.server 8080
+# then open index.boot.html + viewer.b64, or the full index.html
 ```
-
-## Tech
-
-Single-file HTML + Three.js (cdnjs r128).
