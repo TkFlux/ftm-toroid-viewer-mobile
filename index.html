@@ -1,1 +1,19 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#0b0f14"/>
+<title>FTM / Compact Toroid Viewer (Mobile)</title>
+<style>html,body{margin:0;height:100%;background:#0b0f14;color:#e8eef7;font-family:system-ui,sans-serif}#boot{padding:24px;opacity:.75}</style>
+</head><body>
+<div id="boot">Loading FTM / Compact Toroid Viewer…</div>
+<script>
+(async()=>{
+  const b64=(await (await fetch("viewer.b64")).text()).replace(/\s+/g,"");
+  const bin=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));
+  const html=await new Response(new Blob([bin]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+  document.open();document.write(html);document.close();
+})().catch(e=>{document.getElementById("boot").textContent="Failed to load FTM viewer: "+e;});
+</script>
+</body></html>
